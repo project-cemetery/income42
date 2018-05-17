@@ -1,2 +1,5 @@
-app/node_modules
-app/back/build
+back/build
+
+**/node_modules
+**/*.log
+**/*.sqlite

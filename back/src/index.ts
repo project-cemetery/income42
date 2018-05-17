@@ -1,3 +1,5 @@
+import 'reflect-metadata'
+
 import Server from './Server'
 
 const PORT = 8841

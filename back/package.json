@@ -1,0 +1,29 @@
+{
+  "name": "back",
+  "scripts": {
+    "back:prod": "NODE_ENV=prod node ./build/index.js",
+    "back:build": "tsc -p ./back",
+    "back:dev": "NODE_ENV=dev nodemon --exec ts-node -- ./src/index.ts",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "migrations:generate": "ts-node ./node_modules/.bin/typeorm migration:generate -n",
+    "migrations:run": "ts-node ./node_modules/.bin/typeorm migration:run"
+  },
+  "devDependencies": {
+    "@types/express": "^4.11.1",
+    "@types/express-graphql": "^0.6.1",
+    "@types/graphql": "^0.13.1",
+    "@types/node": "^10.1.0",
+    "nodemon": "^1.17.4",
+    "ts-node": "^6.0.3",
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "express-graphql": "^0.6.12",
+    "graphql": "^0.13.2",
+    "reflect-metadata": "^0.1.12",
+    "sqlite3": "^4.0.0",
+    "typeorm": "^0.2.6"
+  }
+}

@@ -4,7 +4,9 @@
         "module": "commonjs",
         "sourceMap": true,
         "outDir": "build",
-        "rootDir": "src"
+        "rootDir": "src",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
     },
     "include": [
       "src/**/*"
