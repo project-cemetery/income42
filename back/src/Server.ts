@@ -1,6 +1,8 @@
 import * as express from 'express'
+import * as jwt from 'express-jwt'
 
-import { graphql, homepage } from './routes'
+import graphqlMiddleware from './graphql/middleware'
+import { homepage } from './routes'
 
 export default class Server {
     public static start = (port: number): Server => {
@@ -20,16 +22,18 @@ export default class Server {
     }
 
     private config() {
-        // pass
+        // JWT
+        const secret = process.env.JWT_SECRET
+        this.app.use(jwt({ secret }))
+
+        // GrapQL
+        this.app.use('/graphql', graphqlMiddleware)
     }
 
     private router() {
         const router = express.Router()
 
         router.get('/', homepage)
-
-        // GrapQL API
-        this.app.use('/graphql', graphql)
 
         this.app.use(router)
     }
