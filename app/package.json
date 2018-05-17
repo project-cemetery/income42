@@ -1,0 +1,19 @@
+{
+  "scripts": {
+    "back:prod": "node ./back/build/index.js",
+    "back:build": "tsc -p ./back",
+    "back:dev": "nodemon --exec ./node_modules/.bin/ts-node -- ./back/src/index.ts",
+    "lint": "tslint -c tslint.json '{back|front}/**/*.{ts,tsx}'"
+  },
+  "devDependencies": {
+    "@types/express": "^4.11.1",
+    "@types/node": "^10.1.0",
+    "nodemon": "^1.17.4",
+    "ts-node": "^6.0.3",
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
