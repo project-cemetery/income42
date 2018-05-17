@@ -1,6 +1,6 @@
 import * as express from 'express'
 
-import { homepage } from './routes'
+import { graphql, homepage } from './routes'
 
 export default class Server {
     public static start = (port: number): Server => {
@@ -27,6 +27,9 @@ export default class Server {
         const router = express.Router()
 
         router.get('/', homepage)
+
+        // GrapQL API
+        this.app.use('/graphql', graphql)
 
         this.app.use(router)
     }
