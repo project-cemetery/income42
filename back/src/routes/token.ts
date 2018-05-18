@@ -20,7 +20,7 @@ export default async (
     const userRepository = getCustomRepository(UserRepository)
     const passwordEncoder = container.get<PasswordEncoder>(TYPES.PasswordEncoder)
 
-    const user = await userRepository.findByLogin(login)
+    const user = await userRepository.findOneByLogin(login)
 
     const passwordValid = passwordEncoder.compare(user.credentials.password, password)
 

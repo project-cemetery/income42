@@ -1,4 +1,4 @@
-import { Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 
 import Account from './Account'
 
@@ -9,6 +9,12 @@ export default class Transaction {
     public id: number
 
     @ManyToOne((type) => Account, (account) => account.transactions)
-    public account
+    public account: Account
+
+    @Column('float')
+    public amount: number
+
+    @Column('varchar')
+    public source: string
 
 }

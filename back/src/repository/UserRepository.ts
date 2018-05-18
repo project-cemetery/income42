@@ -31,16 +31,13 @@ export default class UserRepository extends AbstractRepository<User> {
         return this.manager.save(user)
     }
 
-    public async findByLogin(login: string) {
-        const userRepo = this.manager.getRepository(User)
-
-        const user = await userRepo
+    public async findOneByLogin(login: string) {
+        return await this.manager
+            .getRepository(User)
             .createQueryBuilder('user')
             .leftJoinAndSelect('user.credentials', 'credentials')
             .where('credentials.login = :login ', { login })
             .getOne()
-
-        return user
     }
 
 }

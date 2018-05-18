@@ -1,6 +1,10 @@
 {
-    "type": "sqlite",
-    "database": "database.sqlite",
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "username": "admin",
+    "password": "admin",
+    "database": "income42",
     "entities": [
         "src/entity/**/*.ts"
     ],
