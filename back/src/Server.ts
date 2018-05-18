@@ -1,8 +1,9 @@
+import * as bodyParser from 'body-parser'
 import * as express from 'express'
 import * as jwt from 'express-jwt'
 
 import graphqlMiddleware from './graphql/middleware'
-import { homepage } from './routes'
+import { homepage, register, token } from './routes'
 
 export default class Server {
     public static start = (port: number): Server => {
@@ -22,9 +23,11 @@ export default class Server {
     }
 
     private config() {
+        this.app.use(bodyParser.json())
+
         // JWT
         const secret = process.env.JWT_SECRET
-        this.app.use(jwt({ secret }))
+        this.app.use(jwt({ secret }).unless({ path: ['/register', '/token'] }))
 
         // GrapQL
         this.app.use('/graphql', graphqlMiddleware)
@@ -34,6 +37,9 @@ export default class Server {
         const router = express.Router()
 
         router.get('/', homepage)
+
+        router.post('/register', register)
+        router.post('/token', token)
 
         this.app.use(router)
     }

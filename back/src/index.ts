@@ -1,7 +1,18 @@
 import 'reflect-metadata'
 
+import { createConnection } from 'typeorm'
+
 import Server from './Server'
 
 const PORT = 8841
 
-Server.start(PORT)
+const start = async () => {
+    const connection = await createConnection()
+
+    Server.start(PORT)
+
+    // tslint:disable-next-line:no-console
+    console.log('App started!')
+}
+
+start()

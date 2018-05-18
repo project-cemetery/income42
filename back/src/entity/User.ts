@@ -6,7 +6,10 @@ export default class User {
     @PrimaryGeneratedColumn()
     public id: number
 
-    @Column()
-    public name: string
+    @Column({ type: 'varchar', unique: true })
+    public login: string
+
+    @Column('varchar')
+    public password: string
 
 }
