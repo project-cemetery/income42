@@ -4,7 +4,7 @@
 
 import { MigrationInterface, QueryRunner } from 'typeorm'
 
-export class AddedCreatedAdToTransaction1526654685534 implements MigrationInterface {
+export class AddedCreatedAtToTransaction1526654685534 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<any> {
         await queryRunner.query("ALTER TABLE `transaction` ADD `createdAt` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6)");

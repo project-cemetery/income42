@@ -18,6 +18,6 @@ export default class Transaction {
     public source: string
 
     @CreateDateColumn()
-    public createdAt: string
+    public createdAt: Date
 
 }
