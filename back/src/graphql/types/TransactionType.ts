@@ -3,9 +3,10 @@ import { GraphQLFloat, GraphQLInt, GraphQLObjectType, GraphQLString } from 'grap
 export default new GraphQLObjectType({
     name: 'Transaction',
     fields: {
-        id:     { type: GraphQLInt },
-        amount: { type: GraphQLFloat },
-        source: { type: GraphQLString },
+        id:        { type: GraphQLInt },
+        amount:    { type: GraphQLFloat },
+        source:    { type: GraphQLString },
+        createdAt: { type: GraphQLString },
     },
 })
 

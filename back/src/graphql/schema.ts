@@ -1,7 +1,7 @@
 
 import { GraphQLObjectType, GraphQLSchema } from 'graphql'
 
-import lastTransactions from './nodes/lastTransactions'
+import transactions from './nodes/transactions'
 import user from './nodes/user'
 
 import createTransaction from './mutations/createTransaction'
@@ -10,7 +10,7 @@ const schema = new GraphQLSchema({
     query: new GraphQLObjectType({
         name: 'Query',
         fields: {
-            lastTransactions,
+            transactions,
             user,
         },
     }),

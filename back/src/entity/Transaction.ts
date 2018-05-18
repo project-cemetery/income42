@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 
 import Account from './Account'
 
@@ -16,5 +16,8 @@ export default class Transaction {
 
     @Column('varchar')
     public source: string
+
+    @CreateDateColumn()
+    public createdAt: string
 
 }

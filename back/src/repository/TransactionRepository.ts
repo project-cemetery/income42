@@ -8,15 +8,20 @@ const DEFAULT_LIMIT = 50
 @EntityRepository(Transaction)
 export default class TransactionRepository extends AbstractRepository<Transaction> {
 
-    public async findByUserId(userId: number, limit: number = DEFAULT_LIMIT) {
-        return await this.manager
+    public async findByInterval(userId: number, start: Date, end: Date) {
+        return await this.getQueryBuilder(userId)
+            .andWhere('transaction.createdAt > :start', { start })
+            .andWhere('transaction.createdAt < :end', { end })
+            .getMany()
+    }
+
+    private getQueryBuilder(userId: number) {
+        return this.manager
             .getRepository(Transaction)
             .createQueryBuilder('transaction')
             .leftJoinAndSelect('transaction.account', 'account')
             .leftJoinAndSelect('account.user', 'user')
             .where('user.id = :userId ', { userId })
-            .limit(limit)
-            .getMany()
     }
 
 }
