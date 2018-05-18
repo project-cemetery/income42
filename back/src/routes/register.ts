@@ -11,8 +11,6 @@ export default async (
     res: express.Response,
     next: express.NextFunction,
 ) => {
-    const secret = process.env.JWT_SECRET
-
     const { login, password } = req.body
 
     const userRepository = getRepository(User)
