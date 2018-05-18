@@ -12,8 +12,11 @@ export default {
     },
     resolve: async (_1, { start, end }, context): Promise<TransactionTypeInterface[]> =>
         (await getCustomRepository(TransactionRepositiry)
-            .findByInterval(context.user.id, new Date(start), new Date(end)))
-            .map((transaction) => ({
+            .findByInterval(
+                context.user.id,
+                !!start ? new Date(start) : new Date('0001-01-01'),
+                !!end ? new Date(end) : new Date(),
+            )).map((transaction) => ({
                 id: transaction.id,
                 amount: transaction.amount,
                 source: transaction.source,
