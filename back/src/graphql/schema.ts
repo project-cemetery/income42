@@ -1,12 +1,15 @@
 
-import { buildSchema } from 'graphql'
+import { GraphQLObjectType, GraphQLSchema } from 'graphql'
 
-export const schema = buildSchema(`
-    type Query {
-        message: String
-    }
-`)
+import * as user from './types/User'
 
-export const root = {
-    message: () => 'Hello World!',
-}
+const schema = new GraphQLSchema({
+    query: new GraphQLObjectType({
+        name: 'Query',
+        fields: {
+            user,
+        },
+    }),
+})
+
+export default schema
