@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
+import {
+    Column, Entity,
+    JoinColumn, OneToOne,
+    PrimaryGeneratedColumn,
+} from 'typeorm'
+
+import Account from './Account'
+import Credentials from './Credentials'
 
 @Entity()
 export default class User {
@@ -6,10 +13,11 @@ export default class User {
     @PrimaryGeneratedColumn()
     public id: number
 
-    @Column({ type: 'varchar', unique: true })
-    public login: string
+    @OneToOne((type) => Account, (account) => account.user, { cascade: true })
+    @JoinColumn()
+    public account: Account
 
-    @Column('varchar')
-    public password: string
-
+    @OneToOne((type) => Credentials, (credentials) => credentials.user, { cascade: true })
+    @JoinColumn()
+    public credentials: Credentials
 }

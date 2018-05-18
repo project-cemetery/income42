@@ -6,7 +6,8 @@
     "back:dev": "NODE_ENV=dev JWT_SECRET=shared nodemon --exec ts-node -- ./src/index.ts",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "migrations:generate": "ts-node ./node_modules/.bin/typeorm migration:generate -n",
-    "migrations:run": "ts-node ./node_modules/.bin/typeorm migration:run"
+    "migrations:run": "ts-node ./node_modules/.bin/typeorm migration:run",
+    "migrations:revert": "ts-node ./node_modules/.bin/typeorm migration:revert"
   },
   "devDependencies": {
     "@types/bcrypt-nodejs": "0.0.30",

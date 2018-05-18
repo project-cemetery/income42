@@ -1,10 +1,7 @@
 import * as express from 'express'
-import { getRepository } from 'typeorm'
+import { getCustomRepository } from 'typeorm'
 
-import { User } from '../entity'
-import container from '../service'
-import TYPES from '../service/types'
-import UserManager from '../service/UserManager/UserManager'
+import UserRepository from '../repository/UserRepository'
 
 export default async (
     req: express.Request,
@@ -13,12 +10,9 @@ export default async (
 ) => {
     const { login, password } = req.body
 
-    const userRepository = getRepository(User)
-    const userManager = container.get<UserManager>(TYPES.UserManager)
+    const userRepository = getCustomRepository(UserRepository)
 
-    const user = userManager.createUser(login, password)
-
-    await userRepository.save(user)
+    await userRepository.createAndSave(login, password)
 
     res.send()
 }

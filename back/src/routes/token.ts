@@ -1,12 +1,12 @@
 import * as express from 'express'
 import * as httpCodes from 'http-status-codes'
 import * as jwt from 'jsonwebtoken'
-import { getRepository } from 'typeorm'
+import { getCustomRepository } from 'typeorm'
 
-import { User } from '../entity'
+import UserRepository from '../repository/UserRepository'
 import container from '../service'
+import PasswordEncoder from '../service/PasswordEncoder/PasswordEncoder'
 import TYPES from '../service/types'
-import UserManager from '../service/UserManager/UserManager'
 
 export default async (
     req: express.Request,
@@ -17,12 +17,12 @@ export default async (
 
     const { login, password } = req.body
 
-    const userRepository = getRepository(User)
-    const userManager = container.get<UserManager>(TYPES.UserManager)
+    const userRepository = getCustomRepository(UserRepository)
+    const passwordEncoder = container.get<PasswordEncoder>(TYPES.PasswordEncoder)
 
-    const user = await userRepository.findOne({ login })
+    const user = await userRepository.findByLogin(login)
 
-    const passwordValid = userManager.checkCredentials(user, password)
+    const passwordValid = passwordEncoder.compare(user.credentials.password, password)
 
     if (passwordValid) {
         const token = jwt.sign({ id: user.id }, secret)
