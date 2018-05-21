@@ -2,6 +2,7 @@
 import { GraphQLObjectType, GraphQLSchema } from 'graphql'
 
 import periods from './nodes/periods'
+import sources from './nodes/sources'
 import transactions from './nodes/transactions'
 import user from './nodes/user'
 
@@ -12,6 +13,7 @@ const schema = new GraphQLSchema({
         name: 'Query',
         fields: {
             periods,
+            sources,
             transactions,
             user,
         },
