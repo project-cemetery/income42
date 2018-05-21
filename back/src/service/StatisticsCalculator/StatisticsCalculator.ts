@@ -7,5 +7,5 @@ export default interface StatisticsCalculator {
         start: Date,
         end: Date,
         aggregation: AggregationEnum,
-    ): IncomePeriod[]
+    ): Promise<IncomePeriod[]>
 }
