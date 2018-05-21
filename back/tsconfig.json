@@ -1,5 +1,6 @@
 {
     "compilerOptions": {
+        "lib": ["es6", "dom", "esnext"],
         "target": "es6",
         "module": "commonjs",
         "sourceMap": true,
@@ -7,8 +8,12 @@
         "rootDir": "src",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "baseUrl": ".",
+        "paths": {
+            "@app/*": [ "./src/*" ]
+        }
     },
     "include": [
-      "src/**/*"
+      "src/**/*.ts"
     ]
 }

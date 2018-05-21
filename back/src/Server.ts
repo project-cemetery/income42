@@ -26,7 +26,7 @@ export default class Server {
         this.app.use(bodyParser.json())
 
         // JWT
-        const secret = process.env.JWT_SECRET
+        const secret = process.env.JWT_SECRET || 'not-secret'
         this.app.use(jwt({ secret }).unless({ path: ['/register', '/token'] }))
 
         // GrapQL

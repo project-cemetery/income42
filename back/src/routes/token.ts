@@ -23,7 +23,7 @@ export default async (
     const passwordValid = passwordEncoder.compare(user.credentials.password, password)
 
     if (passwordValid) {
-        const token = jwt.sign({ id: user.id }, secret)
+        const token = jwt.sign({ id: user.id }, secret || 'not-secret')
 
         res.send(token)
     } else {

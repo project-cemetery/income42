@@ -1,6 +1,7 @@
 import { GraphQLList, GraphQLString } from 'graphql'
 
-import container, { StatisticsCalculator, TYPES } from '../../service'
+import container, { StatisticsCalculator, TYPES } from '@app/service'
+
 import AggregationType, { AggregationEnum } from '../types/AggregationType'
 import PeriodType, { PeriodTypeInterface } from '../types/PeriodType'
 

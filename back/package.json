@@ -1,13 +1,13 @@
 {
   "name": "back",
   "scripts": {
-    "back:prod": "NODE_ENV=prod node ./build/index.js",
-    "back:build": "tsc -p ./back",
-    "back:dev": "NODE_ENV=dev JWT_SECRET=shared nodemon --exec ts-node -- ./src/index.ts",
+    "back:prod": "echo 'error'",
+    "back:build": "tsc -p ./",
+    "back:dev": "NODE_ENV=dev JWT_SECRET=shared nodemon --exec ts-node -r tsconfig-paths/register ./src/index.ts",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "migrations:generate": "ts-node ./node_modules/.bin/typeorm migration:generate -n",
-    "migrations:run": "ts-node ./node_modules/.bin/typeorm migration:run",
-    "migrations:revert": "ts-node ./node_modules/.bin/typeorm migration:revert"
+    "migrations:generate": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm migration:generate -n",
+    "migrations:run": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm migration:run",
+    "migrations:revert": "ts-node -r tsconfig-paths/register ./node_modules/.bin/typeorm migration:revert"
   },
   "devDependencies": {
     "@types/bcrypt-nodejs": "0.0.30",
@@ -20,6 +20,7 @@
     "@types/node": "^10.1.0",
     "nodemon": "^1.17.4",
     "ts-node": "^6.0.3",
+    "tsconfig-paths": "^3.3.2",
     "tslint": "^5.10.0",
     "typescript": "^2.8.3"
   },
