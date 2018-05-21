@@ -32,7 +32,7 @@ export default class SimpleStatisticsCalculator implements StatisticsCalculator 
                 title: key,
                 start: new Date(key),
                 end: this.dateUtil.add(new Date(key), aggregation),
-                amount: groups[key]
+                amount: (groups[key] || [])
                     .map((transaction) => transaction.amount)
                     .reduce((prev, cur) => prev + cur),
             } as IncomePeriod))
