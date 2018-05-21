@@ -1,7 +1,7 @@
 import { GraphQLList, GraphQLString } from 'graphql'
 import { getCustomRepository } from 'typeorm'
 
-import TransactionRepositiry from '../../repository/TransactionRepository'
+import { TransactionRepository } from '../../repository'
 import TransactionType, { TransactionTypeInterface } from '../types/TransactionType'
 
 export default {
@@ -11,7 +11,7 @@ export default {
         end:   { type: GraphQLString },
     },
     resolve: async (_1, { start, end }, context): Promise<TransactionTypeInterface[]> =>
-        (await getCustomRepository(TransactionRepositiry)
+        (await getCustomRepository(TransactionRepository)
             .findByInterval(
                 parseInt(context.user.id, 10),
                 !!start ? new Date(start) : new Date('0001-01-01'),

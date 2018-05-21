@@ -1,7 +1,7 @@
 import * as express from 'express'
 import { getCustomRepository } from 'typeorm'
 
-import UserRepository from '../repository/UserRepository'
+import { UserRepository } from '../repository'
 
 export default async (
     req: express.Request,

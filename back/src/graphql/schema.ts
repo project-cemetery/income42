@@ -1,27 +1,20 @@
 
 import { GraphQLObjectType, GraphQLSchema } from 'graphql'
 
-import periods from './nodes/periods'
-import sources from './nodes/sources'
-import transactions from './nodes/transactions'
-import user from './nodes/user'
-
-import createTransaction from './mutations/createTransaction'
+import * as nodes from './nodes'
+import * as mutations from './mutations'
 
 const schema = new GraphQLSchema({
     query: new GraphQLObjectType({
         name: 'Query',
         fields: {
-            periods,
-            sources,
-            transactions,
-            user,
+            ...nodes,
         },
     }),
     mutation: new GraphQLObjectType({
         name: 'Mutation',
         fields: {
-            createTransaction,
+            ...mutations,
         },
     }),
 })

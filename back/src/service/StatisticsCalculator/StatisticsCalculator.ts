@@ -1,6 +1,4 @@
-import AggregationEnum from '../model/AggregationEnum'
-import IncomePeriod from '../model/IncomePeriod'
-import IncomeSource from '../model/IncomeSource'
+import { AggregationEnum, IncomePeriod, IncomeSource } from '../model'
 
 export default interface StatisticsCalculator {
 

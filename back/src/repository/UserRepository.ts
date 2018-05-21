@@ -1,9 +1,7 @@
 import { AbstractRepository, EntityRepository } from 'typeorm'
 
 import { Account, Credentials, User } from '../entity'
-import container from '../service'
-import PasswordEncoder from '../service/PasswordEncoder/PasswordEncoder'
-import TYPES from '../service/types'
+import container, { PasswordEncoder, TYPES } from '../service'
 
 @EntityRepository(User)
 export default class UserRepository extends AbstractRepository<User> {

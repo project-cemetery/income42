@@ -1,11 +1,7 @@
 import { GraphQLList, GraphQLString } from 'graphql'
 
-import TransactionRepositiry from '../../repository/TransactionRepository'
+import container, { StatisticsCalculator, TYPES } from '../../service'
 import SourceType, { SourceTypeInterface } from '../types/SourceType'
-
-import container from '../../service'
-import StatisticsCalculator from '../../service/StatisticsCalculator/StatisticsCalculator'
-import TYPES from '../../service/types'
 
 export default {
     type: new GraphQLList(SourceType),

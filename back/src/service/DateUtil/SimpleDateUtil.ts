@@ -1,8 +1,7 @@
 import { inject, injectable } from 'inversify'
 
-import AggregationEnum from '../model/AggregationEnum'
-import TYPES from '../types'
-import DateUtil from './DateUtil'
+import { DateUtil, TYPES } from '../../service'
+import { AggregationEnum } from '../model'
 
 @injectable()
 export default class SimpleDateUtil implements DateUtil {

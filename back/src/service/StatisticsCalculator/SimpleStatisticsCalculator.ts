@@ -3,13 +3,9 @@ import { groupBy } from 'lodash'
 import { getCustomRepository } from 'typeorm'
 
 import { Transaction } from '../../entity'
-import TransactionRepositiry from '../../repository/TransactionRepository'
-import DateUtil from '../DateUtil/DateUtil'
-import AggregationEnum from '../model/AggregationEnum'
-import IncomePeriod from '../model/IncomePeriod'
-import IncomeSource from '../model/IncomeSource'
-import TYPES from '../types'
-import StatisticsCalculator from './StatisticsCalculator'
+import { TransactionRepository } from '../../repository'
+import { DateUtil, StatisticsCalculator, TYPES } from '../../service'
+import { AggregationEnum, IncomePeriod, IncomeSource } from '../model'
 
 @injectable()
 export default class SimpleStatisticsCalculator implements StatisticsCalculator {
@@ -55,7 +51,7 @@ export default class SimpleStatisticsCalculator implements StatisticsCalculator 
     }
 
     private async getTransactions(userId: number, start: Date, end: Date) {
-        return await getCustomRepository(TransactionRepositiry).findByInterval(userId, start, end)
+        return await getCustomRepository(TransactionRepository).findByInterval(userId, start, end)
     }
 
 }

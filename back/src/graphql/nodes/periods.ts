@@ -1,12 +1,8 @@
 import { GraphQLList, GraphQLString } from 'graphql'
 
-import TransactionRepositiry from '../../repository/TransactionRepository'
+import container, { StatisticsCalculator, TYPES } from '../../service'
 import AggregationType, { AggregationEnum } from '../types/AggregationType'
 import PeriodType, { PeriodTypeInterface } from '../types/PeriodType'
-
-import container from '../../service'
-import StatisticsCalculator from '../../service/StatisticsCalculator/StatisticsCalculator'
-import TYPES from '../../service/types'
 
 export default {
     type: new GraphQLList(PeriodType),

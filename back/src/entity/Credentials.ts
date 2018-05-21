@@ -1,7 +1,6 @@
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
 
-import Transaction from './Transaction'
-import User from './User'
+import { Transaction, User } from '../entity'
 
 @Entity()
 export default class Credentials {

@@ -1,4 +1,4 @@
-import AggregationEnum from '../model/AggregationEnum'
+import { AggregationEnum } from '../model'
 
 export default interface DateUtils {
 

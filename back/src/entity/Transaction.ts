@@ -1,6 +1,6 @@
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
 
-import Account from './Account'
+import { Account } from '../entity'
 
 @Entity()
 export default class Transaction {
