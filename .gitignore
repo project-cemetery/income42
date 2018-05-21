@@ -1,5 +1,2 @@
-back/build
-
 **/node_modules
 **/*.log
-**/*.sqlite
