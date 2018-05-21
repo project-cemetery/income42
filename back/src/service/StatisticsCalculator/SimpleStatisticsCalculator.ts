@@ -16,6 +16,7 @@ export default class SimpleStatisticsCalculator implements StatisticsCalculator 
     @inject(TYPES.DateUtil) private dateUtil: DateUtil
 
     public async incomeByPeriods(userId: number, start: Date, end: Date, aggregation: AggregationEnum) {
+
         const transactions = await getCustomRepository(TransactionRepositiry)
             .findByInterval(userId, start, end)
 
