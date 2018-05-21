@@ -4,8 +4,7 @@ import { getCustomRepository } from 'typeorm'
 
 import { Transaction } from '../../entity'
 import TransactionRepositiry from '../../repository/TransactionRepository'
-import DateAdder from '../DateAdder/DateAdder'
-import DateTruncater from '../DateTruncater/DateTruncater'
+import DateUtil from '../DateUtil/DateUtil'
 import AggregationEnum from '../model/AggregationEnum'
 import IncomePeriod from '../model/IncomePeriod'
 import TYPES from '../types'
@@ -14,8 +13,7 @@ import StatisticsCalculator from './StatisticsCalculator'
 @injectable()
 export default class SimpleStatisticsCalculator implements StatisticsCalculator {
 
-    @inject(TYPES.DateTruncater) private dateTruncater: DateTruncater
-    @inject(TYPES.DateAdder) private dateAdder: DateAdder
+    @inject(TYPES.DateUtil) private dateUtil: DateUtil
 
     public async incomeByPeriods(userId: number, start: Date, end: Date, aggregation: AggregationEnum) {
         const transactions = await getCustomRepository(TransactionRepositiry)
@@ -24,7 +22,7 @@ export default class SimpleStatisticsCalculator implements StatisticsCalculator 
         const groups = groupBy(
             transactions.map((transaction) => ({
                 ...transaction,
-                createdAt: this.dateTruncater.truncate(transaction.createdAt, aggregation),
+                createdAt: this.dateUtil.truncate(transaction.createdAt, aggregation),
             })),
             (transaction: Transaction) => transaction.createdAt,
         )
@@ -33,7 +31,7 @@ export default class SimpleStatisticsCalculator implements StatisticsCalculator 
             .map((key: string) => ({
                 title: key,
                 start: new Date(key),
-                end: this.dateAdder.add(new Date(key), aggregation),
+                end: this.dateUtil.add(new Date(key), aggregation),
                 amount: groups[key]
                     .map((transaction) => transaction.amount)
                     .reduce((prev, cur) => prev + cur),

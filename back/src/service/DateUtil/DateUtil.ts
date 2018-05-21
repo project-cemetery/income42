@@ -2,9 +2,7 @@ import AggregationEnum from '../model/AggregationEnum'
 
 export default interface DateUtils {
 
-    truncateByYear(date: Date): Date
-    truncateByMonth(date: Date): Date
-    truncateByWeek(date: Date): Date
-
+    add(date: Date, aggregation: AggregationEnum): Date
     truncate(date: Date, aggregation: AggregationEnum): Date
+
 }
