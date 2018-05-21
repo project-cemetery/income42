@@ -1,8 +1,8 @@
 
 import { GraphQLObjectType, GraphQLSchema } from 'graphql'
 
-import * as nodes from './nodes'
 import * as mutations from './mutations'
+import * as nodes from './nodes'
 
 const schema = new GraphQLSchema({
     query: new GraphQLObjectType({
