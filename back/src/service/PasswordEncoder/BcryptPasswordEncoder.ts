@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcrypt-nodejs'
 import { injectable } from 'inversify'
 
-import { PasswordEncoder } from '../../service'
+import { PasswordEncoder } from '@app/service'
 
 @injectable()
 export default class BcryptPasswordEncoder implements PasswordEncoder {

@@ -1,6 +1,6 @@
 import { GraphQLList, GraphQLString } from 'graphql'
 
-import container, { StatisticsCalculator, TYPES } from '../../service'
+import container, { StatisticsCalculator, TYPES } from '@app/service'
 import SourceType, { SourceTypeInterface } from '../types/SourceType'
 
 export default {

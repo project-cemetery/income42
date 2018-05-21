@@ -1,6 +1,6 @@
 import { Entity, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm'
 
-import { Transaction, User } from '../entity'
+import { Transaction, User } from '@app/entity'
 
 @Entity()
 export default class Account {

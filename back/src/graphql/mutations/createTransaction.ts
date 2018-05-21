@@ -2,8 +2,8 @@ import { GraphQLFloat, GraphQLObjectType, GraphQLString } from 'graphql'
 
 import { getCustomRepository, getRepository } from 'typeorm'
 
-import { Transaction } from '../../entity'
-import { AccountRepository } from '../../repository'
+import { Transaction } from '@app/entity'
+import { AccountRepository } from '@app/repository'
 import TransactionType, { TransactionTypeInterface } from '../types/TransactionType'
 
 export default {

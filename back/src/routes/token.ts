@@ -3,8 +3,8 @@ import * as httpCodes from 'http-status-codes'
 import * as jwt from 'jsonwebtoken'
 import { getCustomRepository } from 'typeorm'
 
-import { UserRepository } from '../repository'
-import container, { PasswordEncoder, TYPES } from '../service'
+import { UserRepository } from '@app/repository'
+import container, { PasswordEncoder, TYPES } from '@app/service'
 
 export default async (
     req: express.Request,

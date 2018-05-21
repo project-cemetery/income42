@@ -2,9 +2,10 @@ import { inject, injectable } from 'inversify'
 import { groupBy } from 'lodash'
 import { getCustomRepository } from 'typeorm'
 
-import { Transaction } from '../../entity'
-import { TransactionRepository } from '../../repository'
-import { DateUtil, StatisticsCalculator, TYPES } from '../../service'
+import { Transaction } from '@app/entity'
+import { TransactionRepository } from '@app/repository'
+import { DateUtil, StatisticsCalculator, TYPES } from '@app/service'
+
 import { AggregationEnum, IncomePeriod, IncomeSource } from '../model'
 
 @injectable()

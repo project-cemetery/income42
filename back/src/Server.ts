@@ -2,8 +2,8 @@ import * as bodyParser from 'body-parser'
 import * as express from 'express'
 import * as jwt from 'express-jwt'
 
-import graphqlMiddleware from './graphql/middleware'
-import { homepage, register, token } from './routes'
+import graphqlMiddleware from '@app/graphql/middleware'
+import { homepage, register, token } from '@app/routes'
 
 export default class Server {
     public static start = (port: number): Server => {

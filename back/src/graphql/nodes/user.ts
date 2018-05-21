@@ -1,6 +1,7 @@
 import { getRepository } from 'typeorm'
 
-import { User } from '../../entity'
+import { User } from '@app/entity'
+
 import UserType, { UserTypeInterface } from '../types/UserType'
 
 export default {
