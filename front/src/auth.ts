@@ -2,7 +2,7 @@ import axios from 'axios'
 import * as httpCode from 'http-status-codes'
 
 const TOKEN_KEY = 'token'
-const BACK_URL = `${window.location.origin}`
+const BACK_URL = `http://localhost:8841`
 
 const token = () => localStorage.getItem(TOKEN_KEY)
 
