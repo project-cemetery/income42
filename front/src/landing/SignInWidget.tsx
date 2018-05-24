@@ -5,15 +5,18 @@ import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import { Theme, withStyles, WithStyles } from '@material-ui/core/styles'
-import TextField from '@material-ui/core/TextField'
+import { Form } from 'react-final-form'
+
+import TextField from '@app/common/form/TextField'
+import { required } from '@app/utils/validators'
+
+interface FormFields {
+    login: string
+    password: string
+}
 
 interface Props {
     signIn: (login: string, password: string) => Promise<void>
-}
-
-interface State {
-    login: string
-    password: string
 }
 
 const styles = (theme: Theme) => ({
@@ -35,50 +38,56 @@ const styles = (theme: Theme) => ({
 
 type StyleProps = WithStyles<'container' | 'textField'>
 
-class SignInWidget extends React.Component<Props & StyleProps, State> {
+class SignInWidget extends React.Component<Props & StyleProps, {}> {
 
-    public state = {
+    private initialValues = {
         login: '',
         password: '',
-    } as State
+    } as FormFields
 
     public render() {
 
         const { classes } = this.props
 
         return (
-            <Card component="form">
-                <CardContent className={classes.container}>
-                    <TextField
-                        id="login" label="Login"
-                        className={classes.textField}
-                        onChange={this.changeLogin}
-                    />
-                    <TextField
-                        id="password" label="Password"
-                        className={classes.textField}
-                        onChange={this.changePassword}
-                    />
-                </CardContent>
-                <CardActions>
-                    <Button
-                        size="small"
-                        onClick={this.handleSignIn}
-                    >Sign In</Button>
-                </CardActions>
-            </Card>
+            <Form
+                onSubmit={this.handleSignIn}
+                initialValues={this.initialValues}
+            >
+                {(formProps) => (
+                    <Card component="form">
+
+                        <CardContent className={classes.container}>
+                            <TextField
+                                id="login" label="Login"
+                                className={classes.textField}
+                                validate={required}
+                            />
+                            <TextField
+                                id="password" label="Password"
+                                className={classes.textField}
+                                validate={required} type="password"
+                            />
+                        </CardContent>
+
+                        <CardActions>
+                            <Button
+                                type="submit" size="small"
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    formProps.handleSubmit()
+                                }}
+                            >Sign In</Button>
+                        </CardActions>
+
+                    </Card>
+                )}
+            </Form>
         )
     }
 
-    private changeLogin = (e: React.ChangeEvent<HTMLInputElement>) =>
-        this.setState({ login: e.target.value })
-
-    private changePassword = (e: React.ChangeEvent<HTMLInputElement>) =>
-        this.setState({ password: e.target.value })
-
-    private handleSignIn = () => {
-
-        const { login, password } = this.state
+    private handleSignIn = (values: FormFields) => {
+        const { login, password } = values
 
         this.props.signIn(login, password)
             // tslint:disable-next-line:no-console
