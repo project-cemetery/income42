@@ -4,6 +4,7 @@ import { isAuthenticated, signIn, signOut, signUp } from '@app/auth'
 
 import App from '@app/app/App'
 import Landing from '@app/landing/Landing'
+import Loading from '@app/Loading'
 
 interface State {
     loaded: boolean
@@ -13,14 +14,16 @@ interface State {
 export default class Main extends React.Component<{}, State> {
 
     public state = {
-        loaded: true,
+        loaded: false,
         authenticated: false,
     }
 
     public render() {
-        return this.state.authenticated
-            ? <App signOut={this.signOut} />
-            : <Landing signIn={this.signIn} signUp={this.signUp} />
+        return !this.state.loaded
+            ? <Loading />
+            : this.state.authenticated
+                ? <App signOut={this.signOut} />
+                : <Landing signIn={this.signIn} signUp={this.signUp} />
     }
 
     public componentDidMount() {
@@ -28,7 +31,7 @@ export default class Main extends React.Component<{}, State> {
     }
 
     private setAuth = (result: boolean) => this.setState({
-        loaded: false,
+        loaded: true,
         authenticated: result,
     })
 

@@ -20,6 +20,13 @@ export default async (
 
     const user = await userRepository.findOneByLogin(login)
 
+    if (!user) {
+        res.status(httpCodes.NOT_FOUND)
+        res.send()
+
+        return
+    }
+
     const passwordValid = passwordEncoder.compare(user.credentials.password, password)
 
     if (passwordValid) {

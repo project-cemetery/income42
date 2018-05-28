@@ -1,9 +1,10 @@
 import * as bodyParser from 'body-parser'
+import * as cors from 'cors'
 import * as express from 'express'
 import * as jwt from 'express-jwt'
 
 import graphqlMiddleware from '@app/graphql/middleware'
-import { homepage, register, token } from '@app/routes'
+import { check, register, token } from '@app/routes'
 
 export default class Server {
     public static start = (port: number): Server => {
@@ -25,6 +26,9 @@ export default class Server {
     private config() {
         this.app.use(bodyParser.json())
 
+        // CORS
+        this.app.use(cors())
+
         // JWT
         const secret = process.env.JWT_SECRET || 'not-secret'
         this.app.use(jwt({ secret }).unless({ path: ['/register', '/token'] }))
@@ -36,8 +40,7 @@ export default class Server {
     private router() {
         const router = express.Router()
 
-        router.get('/', homepage)
-
+        router.post('/check', check)
         router.post('/register', register)
         router.post('/token', token)
 
