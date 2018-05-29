@@ -1,4 +1,5 @@
 import * as express from 'express'
+import * as httpCodes from 'http-status-codes'
 import { getCustomRepository } from 'typeorm'
 
 import { UserRepository } from '@app/repository'
@@ -12,7 +13,15 @@ export default async (
 
     const userRepository = getCustomRepository(UserRepository)
 
-    await userRepository.createAndSave(login, password)
+    try {
+        await userRepository.createAndSave(login, password)
+    } catch {
+        res.status(httpCodes.CONFLICT)
+        res.send()
 
+        return
+    }
+
+    res.status(httpCodes.CREATED)
     res.send()
 }

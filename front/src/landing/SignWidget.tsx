@@ -1,6 +1,6 @@
 import * as React from 'react'
 
-import Button from '@material-ui/core/Button'
+import Button, { ButtonProps } from '@material-ui/core/Button'
 import Card from '@material-ui/core/Card'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
@@ -17,7 +17,11 @@ interface FormFields {
 }
 
 interface Props {
-    signIn: (login: string, password: string) => Promise<void>
+    signCallback: (login: string, password: string) => Promise<void>
+    title: string
+
+    // MUI Button
+    action?: React.ReactElement<ButtonProps>
 }
 
 const styles = (theme: Theme) => ({
@@ -32,9 +36,12 @@ const styles = (theme: Theme) => ({
     error: {
         flex: '100%',
     },
+    action: {
+        marginLeft: 'auto',
+    },
 })
 
-type StyleProps = WithStyles<'container' | 'textField' | 'error'>
+type StyleProps = WithStyles<'container' | 'textField' | 'error' | 'action'>
 
 class SignInWidget extends React.Component<Props & StyleProps, {}> {
 
@@ -45,11 +52,11 @@ class SignInWidget extends React.Component<Props & StyleProps, {}> {
 
     public render() {
 
-        const { classes } = this.props
+        const { classes, title, action } = this.props
 
         return (
             <Form
-                onSubmit={this.handleSignIn}
+                onSubmit={this.handleSubmit}
                 initialValues={this.initialValues}
             >
                 {(formProps) => (
@@ -59,13 +66,13 @@ class SignInWidget extends React.Component<Props & StyleProps, {}> {
                             {this.renderError(formProps.submitErrors, classes.error)}
 
                             <TextField
-                                id="login" label="Login"
+                                name="login" label="Login"
                                 className={classes.textField}
                                 validate={required}
                             />
 
                             <TextField
-                                id="password" label="Password"
+                                name="password" label="Password"
                                 className={classes.textField}
                                 validate={required} type="password"
                             />
@@ -79,7 +86,12 @@ class SignInWidget extends React.Component<Props & StyleProps, {}> {
                                     e.preventDefault()
                                     formProps.handleSubmit()
                                 }}
-                            >Sign In</Button>
+                            >{title}</Button>
+
+                            {action && React.cloneElement(
+                                action,
+                                { className: classes.action, size: 'small' },
+                            )}
                         </CardActions>
                     </Card>
                 )}
@@ -87,21 +99,17 @@ class SignInWidget extends React.Component<Props & StyleProps, {}> {
         )
     }
 
-    private handleSignIn = (values: FormFields) =>
-        this.props.signIn(values.login, values.password)
-            .catch((err) => ({ FORM_ERROR: err.message as string }))
-
     private renderError = (errors: any, className: string) =>
         errors && errors.FORM_ERROR && (
-            <Typography
-                className={className}
-                gutterBottom
-                variant="caption"
-                color="error"
-            >
+            <Typography className={className} gutterBottom variant="caption" color="error">
                 {errors.FORM_ERROR}
             </Typography>
         )
+
+    private handleSubmit = (values: FormFields) =>
+        this.props.signCallback(values.login, values.password)
+            .catch((err) => ({ FORM_ERROR: err.message as string }))
+
 }
 
 export default withStyles(styles)(SignInWidget)

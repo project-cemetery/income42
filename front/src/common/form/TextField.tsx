@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField'
 import { Field } from 'react-final-form'
 
 interface Props {
-    id: string
+    name: string
     label?: string
     className?: string
     type?: string
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default ({ validate, ...props }: Props) =>
-    <Field name={props.id} validate={validate}>
+    <Field name={props.name} validate={validate}>
         {(fieldProps) =>
             <TextField
                 {...props}

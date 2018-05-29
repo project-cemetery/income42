@@ -1,47 +1,72 @@
 import * as React from 'react'
 
+const ReactCardFlip = require('react-card-flip')
+import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import { Theme, withStyles, WithStyles } from '@material-ui/core/styles'
 
-import Hero from './Hero'
-import SignInWidget from './SignInWidget'
+import SignWidget from './SignWidget'
 
 interface Props {
     signIn: (login: string, password: string) => Promise<void>
-    signUp: (login: string, password: string) => void
+    signUp: (login: string, password: string) => Promise<void>
+}
+
+interface LocalState {
+    isFlipped: boolean
 }
 
 const styles = (theme: Theme) => ({
     root: {
         flexGrow: 1,
-        padding: theme.spacing.unit * 5,
+        paddingTop: '2rem',
+
+        [theme.breakpoints.up('md')]: {
+            paddingTop: '5rem',
+        },
     },
 })
 
 type StyleProps = WithStyles<'root'>
 
-class Landing extends React.Component<Props & StyleProps, {}> {
+class Landing extends React.Component<Props & StyleProps, LocalState> {
+
+    public state = {
+        isFlipped: false,
+    }
 
     public render() {
-
         const { classes } = this.props
 
         return (
-            <div className={classes.root}>
-                <Grid container spacing={24} justify="center">
-                    <Grid item xs={12}>
-                        <Hero />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <p>...</p>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                        <SignInWidget signIn={this.props.signIn} />
-                    </Grid>
+            <Grid
+                container className={classes.root}
+                justify="center"
+            >
+                <Grid item xs={11} sm={8} md={5} lg={4} xl={3}>
+                    <ReactCardFlip isFlipped={this.state.isFlipped}>
+                        <SignWidget
+                            title={'Sign In'} key="front"
+                            signCallback={this.props.signIn}
+                            action={
+                                <Button onClick={this.flip}>I have not account</Button>
+                            }
+                        />
+
+                        <SignWidget
+                            title={'Sign Up'} key="back"
+                            signCallback={this.props.signUp}
+                            action={
+                                <Button onClick={this.flip}>I have account</Button>
+                            }
+                        />
+                    </ReactCardFlip>
                 </Grid>
-            </div>
+            </Grid>
         )
     }
+
+    private flip = () => this.setState((prevState) => ({ isFlipped: !prevState.isFlipped }))
 
 }
 
