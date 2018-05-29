@@ -4,7 +4,7 @@ import {
     PrimaryGeneratedColumn,
 } from 'typeorm'
 
-import { Account, Credentials } from '@app/entity'
+import { Account, Credentials } from '@income42/entity'
 
 @Entity()
 export default class User {

@@ -1,10 +1,9 @@
 import * as React from 'react'
 
-import { isAuthenticated, signIn, signOut, signUp } from '@app/auth'
+import { isAuthenticated, signIn, signOut, signUp } from '@income42/auth'
 
-import App from '@app/app/App'
-import Landing from '@app/landing/Landing'
-import Loading from '@app/Loading'
+import App from '@income42/app/App'
+import Landing from '@income42/landing/Landing'
 
 interface State {
     loaded: boolean
@@ -20,7 +19,7 @@ export default class Main extends React.Component<{}, State> {
 
     public render() {
         return !this.state.loaded
-            ? <Loading />
+            ? null
             : this.state.authenticated
                 ? <App signOut={this.signOut} />
                 : <Landing signIn={this.signIn} signUp={this.signUp} />

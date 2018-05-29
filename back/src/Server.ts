@@ -3,8 +3,8 @@ import * as cors from 'cors'
 import * as express from 'express'
 import * as jwt from 'express-jwt'
 
-import graphqlMiddleware from '@app/graphql/middleware'
-import { check, register, token } from '@app/routes'
+import graphqlMiddleware from '@income42/graphql/middleware'
+import { check, register, token } from '@income42/routes'
 
 export default class Server {
     public static start = (port: number): Server => {

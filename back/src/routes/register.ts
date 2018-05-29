@@ -2,7 +2,7 @@ import * as express from 'express'
 import * as httpCodes from 'http-status-codes'
 import { getCustomRepository } from 'typeorm'
 
-import { UserRepository } from '@app/repository'
+import { UserRepository } from '@income42/repository'
 
 export default async (
     req: express.Request,

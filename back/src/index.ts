@@ -2,7 +2,7 @@ import 'reflect-metadata'
 
 import { createConnection } from 'typeorm'
 
-import Server from '@app/Server'
+import Server from '@income42/Server'
 
 const PORT = 8841
 

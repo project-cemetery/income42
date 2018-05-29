@@ -1,7 +1,7 @@
 import { AbstractRepository, EntityRepository } from 'typeorm'
 
-import { Account } from '@app/entity'
-import container from '@app/service'
+import { Account } from '@income42/entity'
+import container from '@income42/service'
 
 @EntityRepository(Account)
 export default class AccountRepository extends AbstractRepository<Account> {

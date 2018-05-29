@@ -1,6 +1,6 @@
 import { inject, injectable } from 'inversify'
 
-import { DateUtil, TYPES } from '@app/service'
+import { DateUtil, TYPES } from '@income42/service'
 
 import { AggregationEnum } from '../model'
 

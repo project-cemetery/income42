@@ -1,7 +1,7 @@
 import { AbstractRepository, EntityRepository } from 'typeorm'
 
-import { Transaction } from '@app/entity'
-import container from '@app/service'
+import { Transaction } from '@income42/entity'
+import container from '@income42/service'
 
 const DEFAULT_LIMIT = 50
 

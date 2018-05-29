@@ -8,8 +8,8 @@ import { Theme, withStyles, WithStyles } from '@material-ui/core/styles'
 import Typography from '@material-ui/core/Typography'
 import { Form } from 'react-final-form'
 
-import TextField from '@app/common/form/TextField'
-import { required } from '@app/utils/validators'
+import TextField from '@income42/common/form/TextField'
+import { required } from '@income42/utils/validators'
 
 interface FormFields {
     login: string

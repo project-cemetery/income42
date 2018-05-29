@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios'
 import * as httpCode from 'http-status-codes'
 
-import { BACK_URL } from '@app/config'
+import { BACK_URL } from '@income42/config'
 
 const TOKEN_KEY = 'token'
 

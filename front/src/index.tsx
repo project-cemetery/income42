@@ -4,9 +4,9 @@ import * as ReactDOM from 'react-dom'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import { MuiThemeProvider } from '@material-ui/core/styles'
 
-import theme from '@app/theme'
+import theme from '@income42/theme'
 
-import Main from '@app/Main'
+import Main from '@income42/Main'
 
 const Application = () =>
     <MuiThemeProvider theme={theme}>
