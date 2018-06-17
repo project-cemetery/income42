@@ -1,3 +1,8 @@
 import * as React from 'react'
 
-export default () => <p>hellO!</p>
+import YearStat from './widgets/YearStat'
+
+export default () =>
+    <React.Fragment>
+        <YearStat />
+    </React.Fragment>
