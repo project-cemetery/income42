@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import * as moment from 'moment'
 
 import Dynamics from './widgets/Dynamics'
-import YearSources from './widgets/YearSources'
+import Sources from './widgets/Sources'
 
 const styles = (theme: Theme) => ({
     root: {
@@ -34,28 +34,23 @@ const Dashboard = ({ classes, ...props }: StyleProps) =>
                     <Dynamics data={yearDynamicsData} format={'YYYY MMMM'} />
                 </Grid>
                 <Grid item>
-                    <YearSources />
+                    <Sources data={yearSourcesData} />
                 </Grid>
             </Grid>
         </Grid>
     </Grid>
 
 const yearDynamicsData = [
-    {
-        start: moment('May 01 2018'),
-        end: moment('May 31 2018'),
-        amount: 1509.4,
-    },
-    {
-        start: moment('Apr 01 2018'),
-        end: moment('Apt 30 2018'),
-        amount: 1200,
-    },
-    {
-        start: moment('Feb 01 2018'),
-        end: moment('Feb 28 2018'),
-        amount: 1205,
-    },
+    { start: moment('May 01 2018'), end: moment('May 31 2018'), amount: 1509.4 },
+    { start: moment('Apr 01 2018'), end: moment('Apt 30 2018'), amount: 1200 },
+    { start: moment('Feb 01 2018'), end: moment('Feb 28 2018'), amount: 1205 },
+]
+
+const yearSourcesData = [
+    { start: moment('Jan 01 0001'), end: moment('Jun 18 2018'), amount: 1700.9, source: 'Something New' },
+    { start: moment('Jan 01 0001'), end: moment('Jun 18 2018'), amount: 2500, source: 'Op' },
+    { start: moment('Jan 01 0001'), end: moment('Jun 18 2018'), amount: 1879, source: 'Something New' },
+    { start: moment('Jan 01 0001'), end: moment('Jun 18 2018'), amount: 2660, source: 'Something New' },
 ]
 
 export default withStyles(styles)(Dashboard)
